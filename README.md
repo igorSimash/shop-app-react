@@ -1,0 +1,1 @@
+# Write 'npm start' to start the application
