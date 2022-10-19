@@ -1,7 +1,6 @@
 import React from 'react';
 import ButtonDelete from "../button/ButtonDelete";
 import axios from "axios";
-import {getProducts} from "../../utils/getProducts";
 import {useDispatch} from "react-redux";
 import {getComments} from "../../utils/getComments";
 

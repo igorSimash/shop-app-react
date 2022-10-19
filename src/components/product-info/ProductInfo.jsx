@@ -3,7 +3,6 @@ import StandardButton from "../button/StandardButton";
 import Modal from "../modal/Modal";
 import {useState} from "react";
 import FormChangeProduct from "../form/FormChangeProduct";
-import {useSelector} from "react-redux";
 import CommentModal from "../comment/CommentModal";
 
 const ProductInfo = ({img, count, weight, name, height, width, id}) => {
