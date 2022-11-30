@@ -41,8 +41,9 @@ const FormChangeProduct = ({name, count, img, width, height, weight, id, setVisi
 
     const confirm = (e) => {
         e.preventDefault();
-            axios.put(`http://localhost:3001/product/${id}`,
+            axios.put(`https://ihor-shop-server.vercel.app/products`,
                 {
+                    "id": id,
                     "imageUrl": newImage,
                     "name": newName,
                     "count": newCount,

@@ -1,15 +1,12 @@
 import axios from "axios";
-import {getProductsAction} from "../redux/reducers/ProductReducer";
+import {getProductsAction} from "../redux/reducers/ProductReducer.js";
 
 export const getProducts = () => {
     return (dispatch) => {
-        axios.get('http://localhost:3001/product')
+        axios.get('https://ihor-shop-server.vercel.app/products')
             .then(res => {
                 dispatch(getProductsAction(res.data))
-            })
+            });
 
     }
-// На каждое действие, в хранилище (store) посылается объект, описывающий что произошло,
-//     затем вызывается редюсер (reducer) и состояние (state) сразу обновляется.
-
 }

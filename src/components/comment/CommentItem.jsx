@@ -8,7 +8,7 @@ const CommentItem = ({date, description, id}) => {
     const dispatch = useDispatch()
 
     const deleteProduct = () => {
-        axios.delete(`http://localhost:3001/comments/${id}`)
+        axios.delete(`http://localhost:3001/comments`, {data: {comm_id: id}})
             .then(() => dispatch(getComments()))
     }
     return (

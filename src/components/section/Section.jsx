@@ -12,14 +12,12 @@ const Section = () => {
     const [modalVisible, setModalVisible] = useState(false)
 
     const dispatch = useDispatch();
-
-
     useEffect(() => {
         dispatch(getProducts())
         dispatch(getComments())
-    },[])
+    },[dispatch])
 
-    const products = useSelector(state => state.products.products)
+    const products = useSelector(state => state.products.products);
     const loading = useSelector(state => state.products.loading)
 
 

@@ -23,7 +23,7 @@ const CommentModal = ({id}) => {
                     "description": comment,
                     "date": `${
                         date.getHours() <= 9 ? `0` + date.getHours() : date.getHours()}:${date.getMinutes() <= 9 ? `0` + date.getMinutes() :
-                        date.getMinutes()}` + ' ' + date.getFullYear()+"."+(date.getMonth()+1)+"."+ date.getDate()
+                        date.getMinutes()} ` + date.getFullYear()+"."+(date.getMonth()+1)+"."+ date.getDate()
                 }
             })
                 .then(() => dispatch(getComments())

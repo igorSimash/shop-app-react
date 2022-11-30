@@ -14,7 +14,8 @@ const Product = ({name, count, img, width, height, weight, id}) => {
 
     const dispatch = useDispatch();
     const deleteProduct = () => {
-        axios.delete(`http://localhost:3001/product/${id}`)
+        axios.delete(`https://ihor-shop-server.vercel.app/products`, {data: {product_id: id}})
+            .then(() => setModalVisibleDelete(false))
             .then(() => dispatch(getProducts()))
     }
 

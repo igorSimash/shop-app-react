@@ -22,12 +22,12 @@ const FormAddProduct = ({setVisibility}) => {
             setPage(2);
     }
 
-    const confirm = (e) => {
+    const confirm = async (e) => {
         e.preventDefault();
         if (weight && height && width) {
             axios({
                 method: 'post',
-                url: 'http://localhost:3001/product',
+                url: 'https://ihor-shop-server.vercel.app/products',
                 data: {
                     "imageUrl": image,
                     "name": name,
@@ -39,7 +39,9 @@ const FormAddProduct = ({setVisibility}) => {
                     "weight": weight + 'g'
                 }
             })
-                .then(() => dispatch(getProducts())
+                .then(() => {
+                    dispatch(getProducts())
+                }
             )
             setName('');
             setCount('');
@@ -68,59 +70,59 @@ const FormAddProduct = ({setVisibility}) => {
         <form className={'w-full h-full'}>
             {
                 page === 1
-            ?
-                <div className={'w-full h-full flex flex-col justify-around items-center'}>
-                    <div className={'flex justify-around w-full'}>
-                        <InputWithLabel label={'Name'} placeholder={'Product name'} value={name}
-                                        inputType={'text'} onChange={(e) => setName(e.target.value)}/>
-                        <InputWithLabel label={'Count'} placeholder={'Product count'} value={count}
-                                        inputType={'number'} onChange={(e) => setCount(e.target.value)}/>
+                    ?
+                    <div className={'w-full h-full flex flex-col justify-around items-center'}>
+                        <div className={'flex justify-around w-full'}>
+                            <InputWithLabel label={'Name'} placeholder={'Product name'} value={name}
+                                            inputType={'text'} onChange={(e) => setName(e.target.value)}/>
+                            <InputWithLabel label={'Count'} placeholder={'Product count'} value={count}
+                                            inputType={'number'} onChange={(e) => setCount(e.target.value)}/>
+                        </div>
+                        <div className={'w-full flex justify-center'}>
+                            <InputWithLabel label={'Image'} placeholder={'Product image'} value={image}
+                                            inputType={'text'} onChange={(e) => setImage(e.target.value)}/>
+                        </div>
+                        <div className={'flex justify-around w-full'}>
+                            <StandardButton
+                                onClick={continueAdding}
+                            >
+                                Continue
+                            </StandardButton>
+                            <StandardButton
+                                onClick={cancel}
+                                color={'red'}
+                            >
+                                Cancel adding
+                            </StandardButton>
+                        </div>
                     </div>
-                    <div className={'w-full flex justify-center'}>
-                        <InputWithLabel label={'Image'} placeholder={'Product image'} value={image}
-                                        inputType={'text'} onChange={(e) => setImage(e.target.value)}/>
+                    :
+                    <div className={'w-full h-full flex flex-col justify-around items-center'}>
+                        <div className={'flex justify-around w-full'}>
+                            <InputWithLabel label={'Height'} placeholder={'Product height'} value={height}
+                                            inputType={'number'} onChange={(e) => setHeight(e.target.value)}/>
+                            <InputWithLabel label={'Width'} placeholder={'Product width'} value={width}
+                                            inputType={'number'} onChange={(e) => setWidth(e.target.value)}/>
+                        </div>
+                        <div className={'w-full flex justify-center'}>
+                            <InputWithLabel label={'Weight'} placeholder={'Product weight'} value={weight}
+                                            inputType={'number'} onChange={(e) => setWeight(e.target.value)}/>
+                        </div>
+                        <div className={'flex justify-around w-full'}>
+                            <StandardButton
+                                onClick={confirm}
+                                color={'green'}
+                            >
+                                Confirm adding
+                            </StandardButton>
+                            <StandardButton
+                                onClick={cancel}
+                                color={'red'}
+                            >
+                                Cancel adding
+                            </StandardButton>
+                        </div>
                     </div>
-                    <div className={'flex justify-around w-full'}>
-                        <StandardButton
-                            onClick={continueAdding}
-                        >
-                            Continue
-                        </StandardButton>
-                        <StandardButton
-                            onClick={cancel}
-                            color={'red'}
-                        >
-                            Cancel adding
-                        </StandardButton>
-                    </div>
-                </div>
-            :
-                <div className={'w-full h-full flex flex-col justify-around items-center'}>
-                    <div className={'flex justify-around w-full'}>
-                        <InputWithLabel label={'Height'} placeholder={'Product height'} value={height}
-                                        inputType={'number'} onChange={(e) => setHeight(e.target.value)}/>
-                        <InputWithLabel label={'Width'} placeholder={'Product width'} value={width}
-                                        inputType={'number'} onChange={(e) => setWidth(e.target.value)}/>
-                    </div>
-                    <div className={'w-full flex justify-center'}>
-                        <InputWithLabel label={'Weight'} placeholder={'Product weight'} value={weight}
-                                        inputType={'number'} onChange={(e) => setWeight(e.target.value)}/>
-                    </div>
-                    <div className={'flex justify-around w-full'}>
-                        <StandardButton
-                            onClick={confirm}
-                            color={'green'}
-                        >
-                            Confirm adding
-                        </StandardButton>
-                        <StandardButton
-                            onClick={cancel}
-                            color={'red'}
-                        >
-                            Cancel adding
-                        </StandardButton>
-                    </div>
-                </div>
             }
 
         </form>
