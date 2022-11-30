@@ -17,7 +17,7 @@ const CommentModal = ({id}) => {
             const date = new Date()
             axios({
                 method: 'post',
-                url: 'http://localhost:3001/comments',
+                url: 'https://ihor-shop-server.vercel.app/comments',
                 data: {
                     "productId": id,
                     "description": comment,
