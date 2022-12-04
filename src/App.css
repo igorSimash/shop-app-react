@@ -3,7 +3,16 @@
 @tailwind utilities;
 
 body {
-    background: rgba(34, 34, 34, 0.09);
+    background: #FFFFFF;
     margin: 0;
     padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
 }

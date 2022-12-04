@@ -2,44 +2,46 @@ import React from 'react';
 import StandardButton from "../button/StandardButton";
 import ButtonDelete from "../button/ButtonDelete";
 import axios from "axios";
-import {useDispatch} from "react-redux";
-import {getProducts} from "../../utils/getProducts";
+import {useDispatch, useSelector} from "react-redux";
+import {sortProducts} from "../../utils/getProducts";
 import Modal from "../modal/Modal";
 import {useState} from "react";
 import ProductInfo from "../product-info/ProductInfo";
 
-const Product = ({name, count, img, width, height, weight, id}) => {
+const Product = ({name, count, img, width, height, weight, id, price}) => {
     const [modalVisibleInfo, setModalVisibleInfo] = useState(false)
     const [modalVisibleDelete, setModalVisibleDelete] = useState(false)
-
     const dispatch = useDispatch();
+    const priceRange = useSelector(state => state.priceRange.price)
+
     const deleteProduct = () => {
         axios.delete(`https://ihor-shop-server.vercel.app/products`, {data: {product_id: id}})
             .then(() => setModalVisibleDelete(false))
-            .then(() => dispatch(getProducts()))
+            .then(() => dispatch(sortProducts(priceRange)));
     }
 
-
     return (
-        <div className={'w-64 rounded-xl border-2 border-gray-300'}>
-            <div className={'w-full h-64 flex items-center'}>
-                <img src={img} alt="" className={'w-full rounded-xl'}/>
+        <div className={'w-64'}>
+            <div className={'w-full h-64 flex items-center justify-center'}>
+                <img src={img} alt="" className={'w-4/5 rounded-xl'}/>
             </div>
-            <div className={'mx-2 mt-1 flex justify-between text-darkBlue'}>
+            <div className={'mx-4 mt-1 flex justify-between text-darkBlue'}>
                 <span className={'font-bold text-lg'}>
                     {name}
                 </span>
                 <span>
-                    Count: {count}
+                    {price}
                 </span>
             </div>
             <div className={'flex justify-around mt-3 mb-4'}>
                 <StandardButton
                     onClick={() => setModalVisibleInfo(true)}
-                >See info</StandardButton>
+                >
+                    See info
+                </StandardButton>
                 <Modal isVisible={modalVisibleInfo} setVisibility={setModalVisibleInfo} size={'big'}>
                     <ProductInfo img={img} name={name} count={count} setModalVisibleInfo={() => setModalVisibleInfo(false)}
-                                 weight={weight} height={height} id={id} width={width}/>
+                                 weight={weight} height={height} id={id} width={width} price={price}/>
                 </Modal>
                 <Modal isVisible={modalVisibleDelete} setVisibility={setModalVisibleDelete}>
                     <div className={'h-full flex flex-col justify-around items-center'}>

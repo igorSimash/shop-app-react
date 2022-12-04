@@ -10,8 +10,7 @@ const InputWithLabel = ({label, inputType, placeholder, onChange, value}) => {
                 {label}
             </label>
             <input id={label} type={inputType} placeholder={placeholder}
-                   className={`h-10 border-2 border-darkBlue rounded my-auto pl-2 
-                   ${label === 'Image' && 'w-64'} `}
+                   className={`h-10 border-2 border-darkBlue rounded my-auto pl-2`}
                    onChange={onChange} value={value}/>
         </div>
     );

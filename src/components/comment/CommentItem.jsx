@@ -7,7 +7,7 @@ import {getComments} from "../../utils/getComments";
 const CommentItem = ({date, description, id}) => {
     const dispatch = useDispatch()
 
-    const deleteProduct = () => {
+    const deleteComment = () => {
         axios.delete(`https://ihor-shop-server.vercel.app/comments`, {data: {comm_id: id}})
             .then(() => dispatch(getComments()))
     }
@@ -22,7 +22,7 @@ const CommentItem = ({date, description, id}) => {
                 </div>
                 <div>
                     <ButtonDelete
-                        onClick={deleteProduct}
+                        onClick={deleteComment}
                     >
                         Delete
                     </ButtonDelete>

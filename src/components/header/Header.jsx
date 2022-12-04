@@ -1,10 +1,11 @@
 import React from 'react';
-
+import logo from "../../assets/logo3.png"
 const Header = () => {
     return (
-        <header className={'w-full h-14 bg-white flex justify-center items-center '}>
-            <div className={'text-black text-2xl font-bold tracking-wide uppercase'}>
-                Shop app
+        <header className={'w-full h-14 bg-transparent flex items-center '}>
+            <div className={'text-black flex items-center h-full ml-14'}>
+                <img className={'h-full'} src={logo} alt=""/>
+                <span className={'text-[#693A5F] text-2xl tracking-wide uppercase font-bold'}>Shop</span>
             </div>
         </header>
     );

@@ -5,15 +5,15 @@ import {useState} from "react";
 import FormChangeProduct from "../form/FormChangeProduct";
 import CommentModal from "../comment/CommentModal";
 
-const ProductInfo = ({img, count, weight, name, height, width, id}) => {
+const ProductInfo = ({img, count, weight, name, height, width, id, price}) => {
     const [modalVisible, setModalVisible] = useState(false)
     const [modalVisibleComments, setModalVisibleComments] = useState(false)
 
     return (
         <div className={'w-full h-full '}>
             <div className={'w-full h-3/5 flex justify-center mt-6'}>
-                <div className={'flex justify-center '}>
-                    <img src={img} className={'border-2 border-gray-400 rounded-2xl'} alt=""/>
+                <div className={'flex justify-center'}>
+                    <img src={img} alt=""/>
                 </div>
             </div>
             <div className={'flex flex-col items-center w-full'}>
@@ -35,7 +35,7 @@ const ProductInfo = ({img, count, weight, name, height, width, id}) => {
                         Edit info
                     </StandardButton>
                     <Modal isVisible={modalVisible} setVisibility={setModalVisible}>
-                        <FormChangeProduct setVisibility={setModalVisible}
+                        <FormChangeProduct setVisibility={setModalVisible} price={price}
                                            img={img} name={name} count={count}
                                            weight={weight} height={height} width={width} id={id}/>
                     </Modal>
