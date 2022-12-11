@@ -23,7 +23,7 @@ const SettingsSection = () => {
     }
 
     return (
-        <aside className={'w-[250px] h-screen border-r-2 border-t-2'}>
+        <aside className={'w-[250px] sm:w-[180px] s:w-[120px] h-full border-t-2'}>
             <div className={'flex items-center justify-center h-20 border-b-2'}>
                 <StandardButton
                     onClick={() => setModalVisible(true)}
@@ -36,15 +36,17 @@ const SettingsSection = () => {
             </div>
 
             <div>
+                <div className={'flex justify-center'}>
+                    <span className={'font-semibold text-lg s:text-sm'}>Price more than</span>
+                </div>
                 <div className={'flex justify-between w-full w-[calc(100%-20px)] mt-4'}>
-                    <span>More than</span>
                     <input type="number"
                            value={priceRange}
                            onChange={changeRange}
-                           className={'ml-2 w-2/6 border-2 border-black'}
+                           className={'ml-2 rounded-md text-center w-2/6 s:w-3/6 border-2 border-black'}
                     />
                     <button onClick={sortProductsByRange}
-                            className={'w-1/4 border-2 border-black'}
+                            className={'w-1/4 s:text-sm s:w-2/6 border-2 border-black font-semibold rounded-md hover:bg-darkBlue hover:text-white transition-all'}
                     >
                         OK
                     </button>

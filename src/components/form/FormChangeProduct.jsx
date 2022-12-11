@@ -3,7 +3,7 @@ import InputWithLabel from "../input/InputWithLabel";
 import StandardButton from "../button/StandardButton";
 import {useState} from "react";
 import axios from "axios";
-import {getProducts, sortProducts} from "../../utils/getProducts";
+import {sortProducts} from "../../utils/getProducts";
 import {useDispatch, useSelector} from "react-redux";
 
 const FormChangeProduct = ({name, count, img, width, height, weight, id, setVisibility, price}) => {
@@ -20,13 +20,13 @@ const FormChangeProduct = ({name, count, img, width, height, weight, id, setVisi
     const continueAdding = (e) => {
         e.preventDefault();
         if (!newName)
-            setNewName(name)
+            setNewName(name);
         if (!newImage)
-            setNewImage(img)
+            setNewImage(img);
         if (!newCount)
-            setNewCount(count)
+            setNewCount(count);
         if (!newPrice)
-            setNewPrice(price)
+            price[price.length - 1] === "$" ? setNewPrice(price.slice(0, -1)) : setNewPrice(price);
         setPage(2);
     }
 
@@ -44,29 +44,29 @@ const FormChangeProduct = ({name, count, img, width, height, weight, id, setVisi
 
     const cancel = (e) => {
         e.preventDefault();
-        resetStates()
+        resetStates();
     }
 
     const confirm = (e) => {
         e.preventDefault()
-            axios.put(`https://ihor-shop-server.vercel.app/products`,
-                {
-                    "id": id,
-                    "imageUrl": newImage,
-                    "name": newName,
-                    "count": newCount,
-                    "price": newPrice + "$",
-                    "size": {
-                        "width": newWidth ? newWidth : width,
-                        "height": newHeight ? newHeight : height
-                    },
-                    "weight": newWeight ? newWeight + 'g' : weight
-                }
-                )
-                .then(() => {
-                    dispatch(sortProducts(priceRange))
-                    resetStates();
-                })
+        axios.put(`https://ihor-shop-server.vercel.app/products`,
+            {
+                "id": id,
+                "imageUrl": newImage,
+                "name": newName,
+                "count": newCount,
+                "price": newPrice + "$",
+                "size": {
+                    "width": newWidth ? newWidth : width,
+                    "height": newHeight ? newHeight : height
+                },
+                "weight": newWeight ? newWeight + 'g' : weight
+            }
+        )
+            .then(() => {
+                dispatch(sortProducts(priceRange))
+                resetStates();
+            })
 
     }
 
@@ -111,7 +111,8 @@ const FormChangeProduct = ({name, count, img, width, height, weight, id, setVisi
                                             inputType={'number'} onChange={(e) => setNewWidth(e.target.value)}/>
                         </div>
                         <div className={'w-full flex justify-center'}>
-                            <InputWithLabel label={'Weight'} placeholder={weight.substring(0, weight.length - 1)} value={newWeight}
+                            <InputWithLabel label={'Weight'} placeholder={weight.substring(0, weight.length - 1)}
+                                            value={newWeight}
                                             inputType={'number'} onChange={(e) => setNewWeight(e.target.value)}/>
                         </div>
                         <div className={'flex justify-around w-full'}>

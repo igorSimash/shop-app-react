@@ -21,15 +21,15 @@ const Product = ({name, count, img, width, height, weight, id, price}) => {
     }
 
     return (
-        <div className={'w-64'}>
+        <div className={'w-44 sm:w-52 s:w-28 mx-auto flex flex-col justify-end'}>
             <div className={'w-full h-64 flex items-center justify-center'}>
-                <img src={img} alt="" className={'w-4/5 rounded-xl'}/>
+                <img src={img} alt="" className={' rounded-xl'}/>
             </div>
-            <div className={'mx-4 mt-1 flex justify-between text-darkBlue'}>
-                <span className={'font-bold text-lg'}>
+            <div className={'mx-4 s:mx-1 mt-1 flex justify-between text-darkBlue'}>
+                <span className={'font-bold text-lg s:text-sm'}>
                     {name}
                 </span>
-                <span>
+                <span className={'s:text-sm'}>
                     {price}
                 </span>
             </div>

@@ -9,9 +9,9 @@ import SettingsSection from "./components/section/SettingsSection";
 function App() {
     return (
         <Provider store={store}>
-            <div className="App">
+            <div className="App h-full w-full">
                 <Header/>
-                <Main className={'flex mx-16 mt-14 '}>
+                <Main className={'flex mx-16 mt-14 h-full sm:mx-0 s:mx-0 '}>
                     <SettingsSection/>
                     <ProductsSection/>
                 </Main>

@@ -19,10 +19,10 @@ const ProductsSection = () => {
 
 
     return (
-        <section className={'border-t-2 w-[calc(100%-250px)]'}>
+        <section className={'border-t-2 border-l-2 h-fit w-[calc(100%-250px)] sm:w-[calc(100%-180px)] s:w-[calc(100%-120px)]'}>
 
-            <div className={'flex justify-center'}>
-                <div className={'grid grid-cols-5 gap-5'}>
+            <div className={'w-full flex justify-center'}>
+                <div className={'w-full grid grid-cols-5 gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 s:grid-cols-2'}>
                     {
                         loading
                             ?
@@ -33,8 +33,6 @@ const ProductsSection = () => {
                                          count={product.count} width={product.size.width} price={product.price}
                                          height={product.size.height} weight={product.weight} id={product.id}/>
                             )
-
-
                     }
                 </div>
             </div>
