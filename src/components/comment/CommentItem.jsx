@@ -13,7 +13,7 @@ const CommentItem = ({date, description, id}) => {
     }
     return (
         <div className={'border-2 border-gray-400 mx-2 my-2'}>
-            <div className={'text-center underline font-semibold text-lg'}>
+            <div className={'text-center underline font-semibold text-lg s:text-sm'}>
                 {date}
             </div>
             <div className={'mx-2 mb-2 flex justify-between'}>

@@ -45,7 +45,7 @@ const Product = ({name, count, img, width, height, weight, id, price}) => {
                 </Modal>
                 <Modal isVisible={modalVisibleDelete} setVisibility={setModalVisibleDelete}>
                     <div className={'h-full flex flex-col justify-around items-center'}>
-                        <span className={'font-bold text-2xl'}>
+                        <span className={'font-bold text-2xl s:text-xl'}>
                             You want to delete this product?
                         </span>
                         <div className={'w-full flex justify-around text-2xl'}>

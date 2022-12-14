@@ -12,7 +12,7 @@ module.exports = {
         'body': 'rgba(34, 34, 34, 0.09)'
       },
       screens: {
-        's': {'max': '589px'},
+        's': {'max': '590px'},
         // => @media (max-width: 499px) { ... }
         'sm': {'min': '590px', 'max': '854px'},
         // => @media (min-width: 500px and max-width: 767px) { ... }

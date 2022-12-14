@@ -75,14 +75,14 @@ const FormAddProduct = ({setVisibility}) => {
                 page === 1
                     ?
                     <div className={'w-full h-full flex flex-col justify-around items-center'}>
-                        <div className={'flex justify-around w-full'}>
+                        <div className={'flex justify-around md:justify-center sm:justify-center w-full'}>
                             <InputWithLabel label={'Name'} placeholder={'Product name'} value={name}
                                             inputType={'text'} onChange={(e) => setName(e.target.value)}/>
 
                             <InputWithLabel label={'Price'} placeholder={'Product price'} value={price}
                                             inputType={'text'} onChange={(e) => setPrice(e.target.value)}/>
                         </div>
-                        <div className={'w-full flex justify-around'}>
+                        <div className={'w-full flex md:justify-center sm:justify-center justify-around'}>
                             <InputWithLabel label={'Image'} placeholder={'Product image'} value={image}
                                             inputType={'text'} onChange={(e) => setImage(e.target.value)}/>
                             <InputWithLabel label={'Count'} placeholder={'Product count'} value={count}

@@ -11,30 +11,32 @@ const ProductsSection = () => {
     useEffect( () => {
         dispatch(getProducts(priceRange));
         dispatch(getComments());
-
-    }, [dispatch]);
+    }, []);
 
     const products = useSelector(state => state.products.products);
-    const loading = useSelector(state => state.products.loading);
-
+    const loading = useSelector(state => state.products.isLoading);
 
     return (
         <section className={'border-t-2 border-l-2 h-fit w-[calc(100%-250px)] sm:w-[calc(100%-180px)] s:w-[calc(100%-120px)]'}>
-
             <div className={'w-full flex justify-center'}>
-                <div className={'w-full grid grid-cols-5 gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 s:grid-cols-2'}>
-                    {
-                        loading
-                            ?
-                            <Loader/>
-                            :
+                {
+                    loading
+                    ?
+                    <div className={'flex justify-center w-full'}>
+                        <Loader/>
+                    </div>
+                    :
+                    <div
+                        className={'w-full grid grid-cols-5 gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 s:grid-cols-2'}>
+                        {
                             products.map(product =>
                                 <Product key={product.id} name={product.name} img={product.imageUrl}
                                          count={product.count} width={product.size.width} price={product.price}
                                          height={product.size.height} weight={product.weight} id={product.id}/>
                             )
-                    }
-                </div>
+                        }
+                    </div>
+                }
             </div>
         </section>
     );
