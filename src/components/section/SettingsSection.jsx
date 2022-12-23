@@ -1,7 +1,7 @@
 import React from 'react';
 import StandardButton from "../button/StandardButton";
 import Modal from "../modal/Modal";
-import FormAddProduct from "../form/FormAddProduct";
+import FormAddProduct from "../form/form-add-product/FormAddProduct";
 import {useState} from "react";
 import InputRange from "../input/InputRange";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,7 +10,7 @@ import {sortProducts} from "../../utils/getProducts";
 
 const SettingsSection = () => {
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisibleAddProduct, setModalVisibleAddProduct] = useState(false);
     const dispatch = useDispatch();
     const priceRange = useSelector(state => state.priceRange.price);
 
@@ -26,13 +26,18 @@ const SettingsSection = () => {
         <aside className={'w-[250px] sm:w-[180px] s:w-[120px] h-full border-t-2'}>
             <div className={'flex items-center justify-center h-20 border-b-2'}>
                 <StandardButton
-                    onClick={() => setModalVisible(true)}
+                    onClick={() => setModalVisibleAddProduct(true)}
                 >
                     Add product
                 </StandardButton>
-                <Modal isVisible={modalVisible} setVisibility={setModalVisible}>
-                    <FormAddProduct setVisibility={setModalVisible}/>
-                </Modal>
+
+                {modalVisibleAddProduct
+                    &&
+                    <Modal setVisibility={setModalVisibleAddProduct}>
+                        <FormAddProduct setVisibility={setModalVisibleAddProduct}/>
+                    </Modal>
+                }
+
             </div>
 
             <div>

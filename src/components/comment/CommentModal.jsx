@@ -8,7 +8,7 @@ import {getComments} from "../../utils/getComments";
 import axios from "axios";
 
 const CommentModal = ({id}) => {
-    const [modalVisible, setModalVisible] = useState(false)
+    const [modalVisibleAddComment, setModalVisibleAddComment] = useState(false)
     const comments = useSelector(state => state.comments.comments)
     const dispatch = useDispatch()
     const [comment, setComment] = useState('')
@@ -23,13 +23,13 @@ const CommentModal = ({id}) => {
                     "description": comment,
                     "date": `${
                         date.getHours() <= 9 ? `0` + date.getHours() : date.getHours()}:${date.getMinutes() <= 9 ? `0` + date.getMinutes() :
-                        date.getMinutes()} ` + date.getFullYear()+"."+(date.getMonth()+1)+"."+ date.getDate()
+                        date.getMinutes()} ` + date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate()
                 }
             })
                 .then(() => dispatch(getComments())
                 )
             setComment('');
-            setModalVisible(false)
+            setModalVisibleAddComment(false)
         }
     }
 
@@ -46,29 +46,34 @@ const CommentModal = ({id}) => {
                 </div>
                 <div className={'mt-4 flex justify-center'}>
                     <StandardButton
-                        onClick={() => setModalVisible(true)}
+                        onClick={() => setModalVisibleAddComment(true)}
                     >
                         Add comment
                     </StandardButton>
                 </div>
-                <Modal isVisible={modalVisible} setVisibility={setModalVisible}>
-                    <div className={'flex flex-col mx-3 justify-center h-full overflow-scroll'}>
-                        <div className={''}>
-                            <label htmlFor="" className={'text-xl'}>
-                                Your comment:
-                            </label>
-                            <input type="text" placeholder={'Comment'} value={comment} onChange={(e) => setComment(e.target.value)}
-                                   className={'ml-2 h-10 w-9/12 border-2 border-darkBlue rounded my-auto pl-2 '}/>
+                {modalVisibleAddComment
+                    &&
+                    <Modal setVisibility={setModalVisibleAddComment}>
+                        <div className={'flex flex-col mx-3 justify-center h-full overflow-scroll'}>
+                            <div className={''}>
+                                <label htmlFor="" className={'text-xl'}>
+                                    Your comment:
+                                </label>
+                                <input type="text" placeholder={'Comment'} value={comment}
+                                       onChange={(e) => setComment(e.target.value)}
+                                       className={'ml-2 h-10 w-9/12 border-2 border-darkBlue rounded my-auto pl-2 '}/>
+                            </div>
+                            <div className={'flex justify-center mt-5'}>
+                                <StandardButton
+                                    onClick={confirmComment}
+                                >
+                                    Add comment
+                                </StandardButton>
+                            </div>
                         </div>
-                        <div className={'flex justify-center mt-5'}>
-                            <StandardButton
-                                onClick={confirmComment}
-                            >
-                                Add comment
-                            </StandardButton>
-                        </div>
-                    </div>
-                </Modal>
+                    </Modal>
+                }
+
             </div>
         </div>
     );
