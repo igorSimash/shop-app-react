@@ -1,19 +1,20 @@
 import React, {useEffect} from 'react';
-import Product from "../product/Product";
 import {useDispatch, useSelector} from "react-redux";
-import {getProducts} from "../../utils/getProducts";
-import {getComments} from "../../utils/getComments";
-import Loader from "../loader/Loader";
+import {getProducts} from "../../../utils/getProducts";
+import {getComments} from "../../../utils/getComments";
+import Loader from "../../loader/Loader";
+import ProductsList from "./ProductsList";
 
 const ProductsSection = () => {
     const dispatch = useDispatch();
     const priceRange = useSelector(state => state.priceRange.price);
+
     useEffect( () => {
         dispatch(getProducts(priceRange));
         dispatch(getComments());
     }, []);
 
-    const products = useSelector(state => state.products.products);
+
     const loading = useSelector(state => state.products.isLoading);
 
     return (
@@ -26,16 +27,7 @@ const ProductsSection = () => {
                         <Loader/>
                     </div>
                     :
-                    <div
-                        className={'w-full grid grid-cols-5 gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 s:grid-cols-2'}>
-                        {
-                            products.map(product =>
-                                <Product key={product.id} name={product.name} img={product.imageUrl}
-                                         count={product.count} width={product.size.width} price={product.price}
-                                         height={product.size.height} weight={product.weight} id={product.id}/>
-                            )
-                        }
-                    </div>
+                    <ProductsList/>
                 }
             </div>
         </section>

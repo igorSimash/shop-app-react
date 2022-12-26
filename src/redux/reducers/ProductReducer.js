@@ -1,18 +1,17 @@
 const GET_PRODUCTS = "GET_PRODUCTS";
 const SORT_PRODUCTS = "SORT_PRODUCTS";
 
-const defaultState = {
+const initialState = {
     products: [],
     isLoading: true,
 }
 
-export const productReducer =  (state = defaultState, action) => {
+export const productReducer =  (state = initialState, action) => {
     switch (action.type) {
         case GET_PRODUCTS:
             return {
                 isLoading: false,
-                products: action.payload
-                    .sort((a, b) => a.name.localeCompare(b.name)),
+                products: action.payload,
             }
 
         case SORT_PRODUCTS:

@@ -1,16 +1,10 @@
 import React from 'react';
-import StandardButton from "../button/StandardButton";
-import Modal from "../modal/Modal";
-import FormAddProduct from "../form/form-add-product/FormAddProduct";
-import {useState} from "react";
-import InputRange from "../input/InputRange";
+import {sortProducts} from "../../../../utils/getProducts";
+import {setPriceRange} from "../../../../redux/reducers/PriceRangeReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {setPriceRange} from "../../redux/reducers/PriceRangeReducer";
-import {sortProducts} from "../../utils/getProducts";
+import InputRange from "../../../input/InputRange";
 
-const SettingsSection = () => {
-
-    const [modalVisibleAddProduct, setModalVisibleAddProduct] = useState(false);
+const ChangePriceRange = () => {
     const dispatch = useDispatch();
     const priceRange = useSelector(state => state.priceRange.price);
 
@@ -21,26 +15,8 @@ const SettingsSection = () => {
     const sortProductsByRange = () => {
         dispatch(sortProducts(priceRange))
     }
-
     return (
-        <aside className={'w-[250px] sm:w-[180px] s:w-[120px] h-full border-t-2'}>
-            <div className={'flex items-center justify-center h-20 border-b-2'}>
-                <StandardButton
-                    onClick={() => setModalVisibleAddProduct(true)}
-                >
-                    Add product
-                </StandardButton>
-
-                {modalVisibleAddProduct
-                    &&
-                    <Modal setVisibility={setModalVisibleAddProduct}>
-                        <FormAddProduct setVisibility={setModalVisibleAddProduct}/>
-                    </Modal>
-                }
-
-            </div>
-
-            <div>
+            <div className={'border-b-2 pb-2'}>
                 <div className={'flex justify-center'}>
                     <span className={'font-semibold text-lg s:text-sm'}>Price more than</span>
                 </div>
@@ -58,8 +34,7 @@ const SettingsSection = () => {
                 </div>
                 <InputRange value={priceRange} onChange={changeRange}/>
             </div>
-        </aside>
     );
 };
 
-export default SettingsSection;
+export default ChangePriceRange;
