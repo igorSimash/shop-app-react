@@ -71,7 +71,7 @@ const FormChangeProduct = ({name, count, img, width, height, weight, id, setVisi
     }
 
     return (
-        <form className={'w-full h-full'}>
+        <form className={'w-full p h-full'}>
             {
                 page === 1
                     ?
