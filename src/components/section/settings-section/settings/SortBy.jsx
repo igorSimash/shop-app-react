@@ -14,7 +14,7 @@ const SortBy = () => {
             <span className={'font-semibold text-lg s:text-sm'}>Sort by</span>
             <select
                 onChange={handleChange}
-                className={'border-black border-2 s:text-sm rounded-md w-[calc(100%-20px)] pb-0.5'}>
+                className={'border-black border-2 s:text-sm s:pl-0.5 rounded-md w-[calc(100%-20px)] pb-0.5'}>
                 <option value="nameA_Z">Name (A-Z)</option>
                 <option value="nameZ_A">Name (Z-A)</option>
                 <option value="cheapToExp">From cheap to expensive</option>
